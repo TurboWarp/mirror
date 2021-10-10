@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - uses: actions/checkout@v2
+        with:
+          repository: TurboWarp/scratch-gui
+          path: scratch-gui
+      - name: Build
+        run: |
+          cd scratch-gui
+          npm ci
+          NODE_ENV=production npm run build
+      - name: Deploy
+        with:
+          branch: gh-pages
+          folder: scratch-gui/build
