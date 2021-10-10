@@ -20,6 +20,8 @@ jobs:
           cd scratch-gui
           npm ci
           NODE_ENV=production npm run build
+      - name: Patch
+        run: python3 patch.py
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
