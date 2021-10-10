@@ -7,11 +7,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout self
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
           node-version: 14
-      - uses: actions/checkout@v2
+      - name: Checkout source tree
+        uses: actions/checkout@v2
         with:
           repository: TurboWarp/scratch-gui
           path: scratch-gui
@@ -19,7 +22,7 @@ jobs:
         run: |
           cd scratch-gui
           npm ci
-          NODE_ENV=production npm run build
+          NODE_ENV=production ROUTING_STYLE=none npm run build
       - name: Patch
         run: python3 patch.py
       - name: Deploy

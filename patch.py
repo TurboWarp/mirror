@@ -11,6 +11,11 @@ for path in glob.glob('scratch-gui/build/*.html'):
     with open(path, 'w') as fw:
       fw.write(contents)
 
-shutil.copy('scratch-gui/build/editor.html', 'scratch-gui/build/index.html')
 os.remove('scratch-gui/build/sw.js')
 os.remove('scratch-gui/build/manifest.webmanifest')
+os.remove('scratch-gui/build/fullscreen.html')
+os.remove('scratch-gui/build/embed.html')
+os.remove('scratch-gui/build/index.html')
+
+shutil.copy('scratch-gui/build/editor.html', 'scratch-gui/build/index.html')
+shutil.copy('robots.txt', 'scratch-gui/build/robots.txt')
