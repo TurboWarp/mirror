@@ -22,7 +22,7 @@ jobs:
         run: |
           cd scratch-gui
           npm ci
-          NODE_ENV=production ROUTING_STYLE=none npm run build
+          NODE_ENV=production ROUTING_STYLE=hash npm run build
       - name: Patch
         run: python3 patch.py
       - name: Deploy
