@@ -34,3 +34,4 @@ jobs:
         with:
           branch: gh-pages
           folder: scratch-gui/build
+          single-commit: true
