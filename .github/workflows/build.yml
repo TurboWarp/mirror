@@ -30,8 +30,10 @@ jobs:
       - name: Patch
         run: python3 patch.py
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: gh-pages
           folder: scratch-gui/build
           single-commit: true
+          git-config-name: "mirror build bot"
+          git-config-email: "mirrorbuildbot@turbowarp.org"
