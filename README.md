@@ -6,9 +6,11 @@ These are some scripts for making mirrors of [TurboWarp](https://turbowarp.org/)
 
 ## How to make your own mirror
 
-1. Fork the repository on GitHub
-2. Go to the settings page on your fork > Pages > Set source branch to gh-pages (root) / 
-3. Wait a few minutes and refresh, GitHub should give you the link in a nice green box
+If you have a GitHub account, it's easy to make your own mirror with a URL like: `username.github.io/mirror/`
+
+1. Fork the repository on GitHub. The name of the repository determines the path of the mirror's URL.
+2. Go to the settings page on your fork > Pages > Set source branch to `gh-pages` and `/ (root)` and save.
+3. Wait a few minutes and refresh. GitHub will give you the link to the mirror in a green box.
 
 By default, the mirror won't automatically update in forks. If you want to enable automatic updates:
 
