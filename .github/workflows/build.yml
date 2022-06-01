@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: '52 18 * * 2'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
