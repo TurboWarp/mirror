@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '52 18 * * 2'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "deploy"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout self
+      uses: actions/checkout@v3
+    - name: Checkout scratch-gui
+      uses: actions/checkout@v3
+      with:
+        repository: TurboWarp/scratch-gui
+        path: scratch-gui
+    - name: Setup GitHub Pages
+      id: pages
+      uses: actions/configure-pages@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    - name: Build
+      run: |
+        cd scratch-gui
+        npm ci
+        NODE_ENV=production ROUTING_STYLE=hash npm run build
+    - name: Patch
+      run: python3 patch.py
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./scratch-gui/build/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
