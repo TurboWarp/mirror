@@ -41,10 +41,11 @@ jobs:
         NODE_ENV=production ROUTING_STYLE=hash npm run build
     - name: Patch
       run: python3 patch.py
-    - name: Upload artifact
+    - name: Upload pages artifact
       uses: actions/upload-pages-artifact@v1
       with:
         path: ./scratch-gui/build/
+        retention-days: 30
 
   deploy:
     environment:
