@@ -21,19 +21,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout self
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Checkout scratch-gui
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: TurboWarp/scratch-gui
         path: scratch-gui
     - name: Setup GitHub Pages
       id: pages
-      uses: actions/configure-pages@v3
+      uses: actions/configure-pages@v4
     - name: Install Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 14.x
+        node-version: 20
     - name: Build
       run: |
         cd scratch-gui
@@ -42,7 +42,7 @@ jobs:
     - name: Patch
       run: python3 patch.py
     - name: Upload pages artifact
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
         path: ./scratch-gui/build/
         retention-days: 30
@@ -56,4 +56,4 @@ jobs:
     steps:
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v1
+      uses: actions/deploy-pages@v4
