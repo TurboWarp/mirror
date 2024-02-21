@@ -3,13 +3,21 @@ import glob
 import shutil
 
 for path in glob.glob('scratch-gui/build/*.html'):
-  with open(path, 'r') as fr:
-    print(f"Patching HTML {path}")
-    contents = fr.read()
+  print(f'Patching HTML {path}')
+  with open(path, 'r') as f:
+    contents = f.read()
     contents = contents.replace('</head>', '<meta name="robots" content="noindex"></head>')
     contents = contents.replace('<link rel="manifest" href="manifest.webmanifest">', '')
-    with open(path, 'w') as fw:
-      fw.write(contents)
+  with open(path, 'w') as f:
+    f.write(contents)
+
+for path in glob.glob('scratch-gui/build/js/*.js'):
+  print(f'Patching JS {path}')
+  with open(path, 'r') as f:
+    contents = f.read()
+    contents = contents.replace('https://trampoline.turbowarp.org', 'https://trampoline.turbowarp.xyz')
+  with open(path, 'w') as f:
+    f.write(contents)
 
 os.remove('scratch-gui/build/sw.js')
 os.remove('scratch-gui/build/manifest.webmanifest')
