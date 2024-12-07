@@ -11,7 +11,7 @@ for path in glob.glob('scratch-gui/build/*.html'):
   with open(path, 'w') as f:
     f.write(contents)
 
-for path in glob.glob('scratch-gui/build/js/*.js'):
+for path in glob.glob('scratch-gui/build/**/*.js', recursive=True):
   print(f'Patching JS {path}')
   with open(path, 'r') as f:
     contents = f.read()
