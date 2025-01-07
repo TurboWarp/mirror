@@ -22,7 +22,6 @@ for path in glob.glob('scratch-gui/build/**/*.js', recursive=True):
 os.remove('scratch-gui/build/sw.js')
 os.remove('scratch-gui/build/manifest.webmanifest')
 os.remove('scratch-gui/build/fullscreen.html')
-os.remove('scratch-gui/build/embed.html')
 os.remove('scratch-gui/build/index.html')
 
 shutil.copy('scratch-gui/build/editor.html', 'scratch-gui/build/index.html')
