@@ -54,10 +54,7 @@ jobs:
     steps:
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
- 
-      - name: Inject BeanMod Core Engine
-        run: |
+      uses: actions/deploy-pages@v4        run: |
           echo "console.log('🫘 BeanMod Core Active');" > dist/beanmod.js
           echo "const styleEl = document.createElement('style'); styleEl.textContent = 'body { background-color: #1b1c22 !important; } [class*=\"gui_menu-bar\"] { background-color: #1b1c22 !important; border-bottom: 2px solid #a0522d !important; }';" >> dist/beanmod.js
           echo "<script src=\"beanmod.js\"></script>" >> dist/index.html
